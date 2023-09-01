@@ -7,7 +7,8 @@ namespace CRUD_Produtos.Data
     {
         public const string STRING_DE_CONEXAO = "mongodb://localhost:27017";
         public const string NOME_DA_BASE = "Loja";
-        public const string NOME_DA_COLECAO = "Produtos";
+        public const string NOME_DA_COLECAO_PRODUTOS = "Produtos";
+        public const string NOME_DA_COLECAO_CARRINHOS = "Carrinhos";
 
         private static readonly IMongoClient _client;
         public static readonly IMongoDatabase _database;
@@ -19,6 +20,7 @@ namespace CRUD_Produtos.Data
         }
 
         public IMongoClient Client { get { return _client; } }  
-        public IMongoCollection<Produto> Produtos { get { return _database.GetCollection<Produto>(NOME_DA_COLECAO); } }
+        public IMongoCollection<Produto> Produtos { get { return _database.GetCollection<Produto>(NOME_DA_COLECAO_PRODUTOS); } }
+        public IMongoCollection<Carrinho> Carrinhos { get { return _database.GetCollection<Carrinho>(NOME_DA_COLECAO_CARRINHOS); } }
     }
 }
