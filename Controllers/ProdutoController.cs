@@ -73,7 +73,7 @@ namespace CRUD_Produtos.Controllers
             }
 
             return Ok(carrinho); 
-        }
+        } 
 
         [HttpGet("carrinho")]
         public IActionResult ObterCarrinho(string idCarrinho)
@@ -84,9 +84,7 @@ namespace CRUD_Produtos.Controllers
 
             var precoTotal = 0;
             foreach(var produto in carrinho.Produtos)
-            {
                 precoTotal += produto.Preco;
-            }
 
             var carrinhoModel = new CarrinhoModel(carrinho.Produtos, precoTotal);
 
@@ -110,7 +108,6 @@ namespace CRUD_Produtos.Controllers
             return Ok("Compra realizada com sucesso");
         }
 
-
         [HttpGet("vendas")]
         public IActionResult TotalVendas(DateTime dataInicio, DateTime dataFim) 
         {
@@ -119,15 +116,8 @@ namespace CRUD_Produtos.Controllers
             filter &= builer.Where(x => x.DataVenda >= dataInicio && x.DataVenda <= dataFim);
 
             var produtos = _context.Produtos.Find(filter).ToList();
-            var totalVendas = produtos.Count();
-
-            var totalPreco = 0;
-            foreach (var produto in produtos) 
-                totalPreco += produto.Preco;
-
-            var vendaModel = new VendaModel(totalPreco);
-
-            return Ok(vendaModel);
+           
+            return Ok(produtos);
         }
 
         [HttpDelete]
