@@ -40,7 +40,7 @@ namespace CRUD_Produtos.Controllers
         {
             var carrinho = _context.Carrinhos.Find(x => x.Id == idCarrinho).FirstOrDefault();
             if (carrinho == null)
-                return BadRequest("Ops carrinho vazio");
+                return BadRequest("Ops! Parece que seu carrinho está vazio");
 
             var precoTotal = 0;
             foreach (var produto in carrinho.Produtos)
